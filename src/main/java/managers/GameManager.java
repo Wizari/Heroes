@@ -1,6 +1,7 @@
 package managers;
 
 import entyty.Fraction;
+import entyty.OffHand;
 import entyty.WeaponClass;
 import utils.Helper;
 
@@ -12,8 +13,10 @@ public class GameManager {
     private boolean showMustGoOn = true;
 
     public void run() {
-        HeroManager hero1 = new HeroManager("ДевочкаВолшебница", Fraction.CHAOS, WeaponClass.LONGBOW);
-        HeroManager hero2 = new HeroManager("Ультрамарин", Fraction.IMPERIUM, WeaponClass.HEAVY);
+        HeroManager hero1 = new HeroManager(
+                "ДевочкаВолшебница", Fraction.CHAOS, WeaponClass.LONGBOW, OffHand.NOTHING);
+        HeroManager hero2 = new HeroManager(
+                "Ультрамарин", Fraction.IMPERIUM, WeaponClass.HEAVY, OffHand.SHIELD);
         distance = Helper.getRandom(7, 10);
         ActionManager actionManager = new ActionManager(hero1, hero2, distance);
         Timer timer = new Timer();

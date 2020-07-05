@@ -2,8 +2,11 @@ package managers;
 
 import entyty.Fraction;
 import entyty.Hero;
+import entyty.OffHand;
 import entyty.WeaponClass;
 import utils.Helper;
+
+import java.util.concurrent.ThreadLocalRandom;
 
 public class HeroManager {
     private Hero hero;
@@ -11,7 +14,7 @@ public class HeroManager {
     private double hp;
 
 
-    public HeroManager(String name, Fraction fraction, WeaponClass weaponClass) {
+    public HeroManager(String name, Fraction fraction, WeaponClass weaponClass, OffHand offHand) {
         double hp = Helper.getRandom(10, 15);
         if (weaponClass == WeaponClass.HEAVY) {
             weaponDamage = 1;
@@ -22,7 +25,7 @@ public class HeroManager {
         if (weaponClass == WeaponClass.LIGHT) {
             weaponDamage = 1 * 0.60;
         }
-        hero = new Hero(name, fraction, hp, weaponClass);
+        hero = new Hero(name, fraction, hp, weaponClass, offHand);
 
     }
 
@@ -67,8 +70,11 @@ public class HeroManager {
                 break;
             case LONGBOW:
                 if (distance >= 3) {
-                    System.out.println(hero.getName() + ": Наношу " + weaponDamage + " урона.");
-                    hp = heroManager.hero.getHp() - weaponDamage;
+                    double damage = damageСalculation(weaponDamage, heroManager);
+                    damage = Helper.round(damage, 2);
+                    hp = heroManager.hero.getHp() - damage;
+                    hp = Helper.round(hp, 2);
+                    System.out.println(hero.getName() + ": Наношу " + damage + " урона.");
                     heroManager.hero.setHp(hp);
                     System.out.println(heroManager.hero.getName() + " осталось: " + heroManager.hero.getHp() + " HP");
                     if (heroManager.getHp() <= 0) {
@@ -90,6 +96,16 @@ public class HeroManager {
 
     public double getHp() {
         return hero.getHp();
+    }
+
+    public double damageСalculation (double weaponDamage, HeroManager heroManager) {
+        if (heroManager.hero.getOffHand() == OffHand.SHIELD) {
+            double diminution = ThreadLocalRandom.current().nextDouble(0, 1);
+//            System.out.println(diminution);
+            return weaponDamage * diminution;
+        } else {
+            return weaponDamage;
+        }
     }
 
 }
