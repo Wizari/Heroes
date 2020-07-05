@@ -10,12 +10,9 @@ public class Hero {
 
     public void move(int distance) {
         System.out.println(name + ": Делаю шаг преред, дистанция до противника " + distance + "м.");
-        if (distance == 1) {
-            hit();
-        }
     }
 
-    void hit() {
+    public void hit() {
         System.out.println(name + ": Ударяю противника");
         System.out.println("Герой - " + name + " Побеждает");
     }

@@ -8,7 +8,7 @@ import java.util.TimerTask;
 public class GameManager {
     private boolean swap = true;
     private int distance;
-
+    private Hero temp;
 
     public void run() {
         Hero hero1 = new Hero("ДевочкаВолшебница");
@@ -17,6 +17,7 @@ public class GameManager {
         int b = 5; // Конечное значение диапазона - "до"
         distance = a + (int) (Math.random() * b);
 
+
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -24,6 +25,7 @@ public class GameManager {
                 distance--;
                 getAnotherHero(hero1, hero2).move(distance);
                 if (distance == 1) {
+                    temp.hit();
                     timer.cancel();
                 }
             }
@@ -34,9 +36,11 @@ public class GameManager {
     Hero getAnotherHero(Hero hero1, Hero hero2) {
         if (swap) {
             swap = false;
+            temp = hero1;
             return hero1;
         } else {
             swap = true;
+            temp = hero2;
             return hero2;
         }
     }
