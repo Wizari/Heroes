@@ -29,7 +29,7 @@ public class HeroManager {
     public int move(int distance) {
         if (distance >= 0) {
             if (hero.getWeaponClass() != WeaponClass.LONGBOW) {
-                System.out.println(hero.getName() + ": Делаю шаг впреред, дистанция до противника " + distance + "м.");
+                System.out.println(hero.getName() + ": Делаю шаг вперед, дистанция до противника " + distance + "м.");
                 distance--;
                 return distance;
             }
