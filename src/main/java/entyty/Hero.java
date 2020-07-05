@@ -2,23 +2,36 @@ package entyty;
 
 public class Hero {
     String name;
-    int distance;
+    Fraction fraction;
+    int hp;
 
-    public Hero(String name) {
+    public Hero(String name, Fraction fraction, int hp) {
+        this.name = name;
+        this.fraction = fraction;
+        this.hp = hp;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    public void move(int distance) {
-        System.out.println(name + ": Делаю шаг преред, дистанция до противника " + distance + "м.");
+    public Fraction getFraction() {
+        return fraction;
     }
 
-    public void hit() {
-        System.out.println(name + ": Ударяю противника");
+    public void setFraction(Fraction fraction) {
+        this.fraction = fraction;
     }
 
-    public void winMessage() {
-        System.out.println("Герой - " + name + " Побеждает");
+    public int getHp() {
+        return hp;
     }
 
-
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
 }
