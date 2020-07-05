@@ -6,25 +6,24 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class GameManager {
-    int distance;
-    boolean swap = true;
-    int randomNumber;
+    private boolean swap = true;
+    private int distance;
 
 
     public void run() {
         Hero hero1 = new Hero("ДевочкаВолшебница");
         Hero hero2 = new Hero("Ультрамарин");
-        int a = 5; // Начальное значение диапазона - "от"
-        int b = 10; // Конечное значение диапазона - "до"
-        randomNumber = a + (int) (Math.random() * b);
+        int a = 4; // Начальное значение диапазона - "от"
+        int b = 5; // Конечное значение диапазона - "до"
+        distance = a + (int) (Math.random() * b);
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                randomNumber--;
-                getAnotherHero(hero1, hero2).move(randomNumber);
-                if (randomNumber == 1) {
+                distance--;
+                getAnotherHero(hero1, hero2).move(distance);
+                if (distance == 1) {
                     timer.cancel();
                 }
             }
