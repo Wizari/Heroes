@@ -8,38 +8,79 @@ import utils.Helper;
 public class HeroManager {
     private Hero hero;
     private double weaponDamage;
+    private double hp;
 
 
     public HeroManager(String name, Fraction fraction, WeaponClass weaponClass) {
         double hp = Helper.getRandom(2, 5);
-//        this.weaponClass = weaponClass;
         if (weaponClass == WeaponClass.HEAVY) {
             weaponDamage = 1;
-        } else {
+        }
+        if (weaponClass == WeaponClass.LONGBOW) {
+            weaponDamage = 1;
+        }
+        if (weaponClass == WeaponClass.LIGHT) {
             weaponDamage = 1 * 0.60;
         }
         hero = new Hero(name, fraction, hp, weaponClass);
 
     }
 
-    public void move(int distance) {
-        System.out.println(hero.getName() + ": Делаю шаг преред, дистанция до противника " + distance + "м.");
-    }
-
-    public void hit(HeroManager heroManager) {
-        if (hero.getWeaponClass() == WeaponClass.HEAVY) {
-            System.out.println(hero.getName() + ": Наношу " + weaponDamage + " урона.");
-            double hp = heroManager.hero.getHp() - weaponDamage;
-            heroManager.hero.setHp(hp);
-            System.out.println(heroManager.hero.getName() + " осталось: " + heroManager.hero.getHp() + " HP");
-        } else {
-            for (int i = 0; i < 2; i++) {
-                System.out.println(hero.getName() + ": Наношу " + weaponDamage + " урона.");
-                double hp = heroManager.hero.getHp() - weaponDamage;
-                heroManager.hero.setHp(hp);
-                System.out.println(heroManager.hero.getName() + " осталось: " + heroManager.hero.getHp() + " HP");
+    public int move(int distance) {
+        if (distance >= 0) {
+            if (hero.getWeaponClass() != WeaponClass.LONGBOW) {
+                System.out.println(hero.getName() + ": Делаю шаг преред, дистанция до противника " + distance + "м.");
+                distance--;
+                return distance;
             }
         }
+        return distance;
+    }
+
+    public boolean hit(HeroManager heroManager, int distance) {
+        switch (hero.getWeaponClass()) {
+            case HEAVY:
+                if (distance <= 0) {
+                    System.out.println(hero.getName() + ": Наношу " + weaponDamage + " урона.");
+                    hp = heroManager.hero.getHp() - weaponDamage;
+                    heroManager.hero.setHp(hp);
+                    System.out.println(heroManager.hero.getName() + " осталось: " + heroManager.hero.getHp() + " HP");
+                    if (heroManager.getHp() <= 0) {
+                        winMessage();
+                        return false;
+                    }
+                }
+                break;
+            case LIGHT:
+                if (distance <= 0) {
+                    for (int i = 0; i < 2; i++) {
+                        System.out.println(hero.getName() + ": Наношу " + weaponDamage + " урона.");
+                        hp = heroManager.hero.getHp() - weaponDamage;
+                        heroManager.hero.setHp(hp);
+                        System.out.println(heroManager.hero.getName() + " осталось: " + heroManager.hero.getHp() + " HP");
+                        if (heroManager.getHp() <= 0) {
+                            winMessage();
+                            return false;
+                        }
+                    }
+                }
+                break;
+            case LONGBOW:
+                if (distance >= 3) {
+                    System.out.println(hero.getName() + ": Наношу " + weaponDamage + " урона.");
+                    hp = heroManager.hero.getHp() - weaponDamage;
+                    heroManager.hero.setHp(hp);
+                    System.out.println(heroManager.hero.getName() + " осталось: " + heroManager.hero.getHp() + " HP");
+                    if (heroManager.getHp() <= 0) {
+                        winMessage();
+                        return false;
+                    }
+                } else {
+                    System.out.println("Т_Т не могу стрелять");
+                }
+                break;
+        }
+        return true;
     }
 
     public void winMessage() {
