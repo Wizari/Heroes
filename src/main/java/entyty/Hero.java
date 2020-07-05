@@ -1,14 +1,16 @@
 package entyty;
 
 public class Hero {
-    String name;
-    Fraction fraction;
-    int hp;
+    private String name;
+    private Fraction fraction;
+    private double hp;
+    private WeaponClass weaponClass;
 
-    public Hero(String name, Fraction fraction, int hp) {
+    public Hero(String name, Fraction fraction, double hp, WeaponClass weaponClass) {
         this.name = name;
         this.fraction = fraction;
         this.hp = hp;
+        this.weaponClass = weaponClass;
     }
 
     public String getName() {
@@ -27,11 +29,19 @@ public class Hero {
         this.fraction = fraction;
     }
 
-    public int getHp() {
+    public double getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
+    public void setHp(double hp) {
         this.hp = hp;
+    }
+
+    public WeaponClass getWeaponClass() {
+        return weaponClass;
+    }
+
+    public void setWeaponClass(WeaponClass weaponClass) {
+        this.weaponClass = weaponClass;
     }
 }

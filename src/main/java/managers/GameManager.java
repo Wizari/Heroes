@@ -2,6 +2,7 @@ package managers;
 
 import entyty.Fraction;
 import entyty.Hero;
+import entyty.WeaponClass;
 import utils.Helper;
 
 import java.util.Timer;
@@ -11,10 +12,11 @@ public class GameManager {
     private boolean swap = true;
     private int distance;
     private HeroManager temp;
+    private boolean firstHit = true;
 
     public void run() {
-        HeroManager hero1 = new HeroManager("ДевочкаВолшебница", Fraction.CHAOS);
-        HeroManager hero2 = new HeroManager("Ультрамарин", Fraction.IMPERIUM);
+        HeroManager hero1 = new HeroManager("ДевочкаВолшебница", Fraction.CHAOS, WeaponClass.LIGHT);
+        HeroManager hero2 = new HeroManager("Ультрамарин", Fraction.IMPERIUM, WeaponClass.HEAVY);
         distance = Helper.getRandom(4, 6);
         moveHero(hero1, hero2);
     }
@@ -44,20 +46,16 @@ public class GameManager {
         }, 0, 1000);
     }
 
-    boolean firstHit = true;
-
     void hitting(HeroManager hero1, HeroManager hero2) {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 if (firstHit) {
-                    temp.hit();
+                    temp.hit(getAnotherHero(hero1, hero2));
                     firstHit = false;
-                    getAnotherHero(hero1, hero2).takeDamage(1);
                 } else {
-                    temp.hit();
-                    getAnotherHero(hero1, hero2).takeDamage(1);
+                    temp.hit(getAnotherHero(hero1, hero2));
                     if (temp.getHp() <= 0) {
                         getAnotherHero(hero1, hero2);
                         temp.winMessage();
