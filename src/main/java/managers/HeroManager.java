@@ -12,7 +12,7 @@ public class HeroManager {
 
 
     public HeroManager(String name, Fraction fraction, WeaponClass weaponClass) {
-        double hp = Helper.getRandom(2, 5);
+        double hp = Helper.getRandom(10, 15);
         if (weaponClass == WeaponClass.HEAVY) {
             weaponDamage = 1;
         }
@@ -29,7 +29,7 @@ public class HeroManager {
     public int move(int distance) {
         if (distance >= 0) {
             if (hero.getWeaponClass() != WeaponClass.LONGBOW) {
-                System.out.println(hero.getName() + ": Делаю шаг преред, дистанция до противника " + distance + "м.");
+                System.out.println(hero.getName() + ": Делаю шаг впреред, дистанция до противника " + distance + "м.");
                 distance--;
                 return distance;
             }
@@ -76,7 +76,7 @@ public class HeroManager {
                         return false;
                     }
                 } else {
-                    System.out.println("Т_Т не могу стрелять");
+                    System.out.println(hero.getName() + " - Т_Т я не могу стрелять!");
                 }
                 break;
         }
