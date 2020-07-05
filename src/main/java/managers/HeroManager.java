@@ -72,7 +72,7 @@ public class HeroManager {
                 if (distance >= 3) {
                     double damage = damageСalculation(weaponDamage, heroManager);
                     damage = Helper.round(damage, 2);
-                    hp = heroManager.hero.getHp() - damage; //TODO какого фига если от 10 отнять 0.11 может выдать 9.999999
+                    hp = heroManager.hero.getHp() - damage; //TODO какого фига если от 10 отнять 0.11 может выдать 9.899999
 //                    hp = Helper.round(hp, 2);
                     System.out.println(hero.getName() + ": Наношу " + damage + " урона.");
                     heroManager.hero.setHp(hp);
