@@ -14,6 +14,9 @@ public class Hero {
 
     public void hit() {
         System.out.println(name + ": Ударяю противника");
+    }
+
+    public void winMessage() {
         System.out.println("Герой - " + name + " Побеждает");
     }
 

@@ -26,6 +26,7 @@ public class GameManager {
                 getAnotherHero(hero1, hero2).move(distance);
                 if (distance == 1) {
                     temp.hit();
+                    temp.winMessage();
                     timer.cancel();
                 }
             }
