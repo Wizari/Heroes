@@ -7,6 +7,8 @@ public class ActionManager {
     private HeroManager activeHero;
     private int distance;
     private boolean showMustGoOn = true;
+    private HeroManager winner;
+
 
     public ActionManager(HeroManager hero1, HeroManager hero2, int distance) {
         this.hero1 = hero1;
@@ -18,6 +20,9 @@ public class ActionManager {
         activeHero = getAnotherHero(hero1, hero2);
         distance = activeHero.move(distance);
         showMustGoOn = activeHero.hit(getAntagonist(hero1, hero2), distance);
+        if (!showMustGoOn) {
+            this.winner = activeHero;
+        }
 
         return showMustGoOn;
     }
@@ -38,6 +43,10 @@ public class ActionManager {
         } else {
             return hero2;
         }
+    }
+
+    public HeroManager getWinner() {
+        return winner;
     }
 }
 

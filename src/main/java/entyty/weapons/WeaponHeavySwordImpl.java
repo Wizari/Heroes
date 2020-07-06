@@ -55,4 +55,5 @@ public class WeaponHeavySwordImpl implements IWeapon {
     public double getWeaponDamage() {
         return weaponDamage;
     }
+
 }

@@ -13,9 +13,8 @@ public class HeroManager {
     private double hp;
     IWeapon weapon;
 
-
     public HeroManager(String name, Fraction fraction, WeaponType weaponType, OffHand offHand, Mount mount) {
-        double hp = Helper.getRandom(10, 15);
+        double hp = Helper.getRandom(5, 6);
         if (weaponType == WeaponType.HEAVY) {
             weapon = new WeaponHeavySwordImpl();
         }
@@ -51,6 +50,10 @@ public class HeroManager {
 
     public boolean hit(HeroManager antagonistHero, int distance) {
         return weapon.hit(hero, antagonistHero, distance);
+    }
+
+    public void refresh() {
+        hero.setHp(Helper.getRandom(5, 6));
     }
 
     public double getHp() {
