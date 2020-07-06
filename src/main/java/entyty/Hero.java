@@ -1,18 +1,22 @@
 package entyty;
 
+import entyty.weapons.WeaponType;
+
 public class Hero {
     private String name;
     private Fraction fraction;
     private double hp;
-    private WeaponClass weaponClass;
+    private WeaponType weaponType;
     private OffHand offHand;
+    private Mount mount;
 
-    public Hero(String name, Fraction fraction, double hp, WeaponClass weaponClass, OffHand offHand) {
+    public Hero(String name, Fraction fraction, double hp, WeaponType weaponType, OffHand offHand, Mount mount) {
         this.name = name;
         this.fraction = fraction;
         this.hp = hp;
-        this.weaponClass = weaponClass;
+        this.weaponType = weaponType;
         this.offHand = offHand;
+        this.mount = mount;
     }
 
     public String getName() {
@@ -39,12 +43,12 @@ public class Hero {
         this.hp = hp;
     }
 
-    public WeaponClass getWeaponClass() {
-        return weaponClass;
+    public WeaponType getWeaponType() {
+        return weaponType;
     }
 
-    public void setWeaponClass(WeaponClass weaponClass) {
-        this.weaponClass = weaponClass;
+    public void setWeaponType(WeaponType weaponType) {
+        this.weaponType = weaponType;
     }
 
     public OffHand getOffHand() {
@@ -53,5 +57,13 @@ public class Hero {
 
     public void setOffHand(OffHand offHand) {
         this.offHand = offHand;
+    }
+
+    public Mount getMount() {
+        return mount;
+    }
+
+    public void setMount(Mount mount) {
+        this.mount = mount;
     }
 }

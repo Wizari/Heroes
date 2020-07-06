@@ -1,8 +1,9 @@
 package managers;
 
 import entyty.Fraction;
+import entyty.Mount;
 import entyty.OffHand;
-import entyty.WeaponClass;
+import entyty.weapons.WeaponType;
 import utils.Helper;
 
 import java.util.Timer;
@@ -14,9 +15,11 @@ public class GameManager {
 
     public void run() {
         HeroManager hero1 = new HeroManager(
-                "ДевочкаВолшебница", Fraction.CHAOS, WeaponClass.LONGBOW, OffHand.NOTHING);
+                "Лучник", Fraction.CHAOS, WeaponType.LONGBOW, OffHand.NOTHING, Mount.LEGS);
+//        HeroManager hero2 = new HeroManager(
+//                "Ультрамарин", Fraction.IMPERIUM, WeaponType.LIGHT, OffHand.SHIELD, Mount.LEGS);
         HeroManager hero2 = new HeroManager(
-                "Ультрамарин", Fraction.IMPERIUM, WeaponClass.HEAVY, OffHand.SHIELD);
+                "Лансер", Fraction.IMPERIUM, WeaponType.LANCE, OffHand.SHIELD, Mount.MOUNT);
         distance = Helper.getRandom(7, 10);
         ActionManager actionManager = new ActionManager(hero1, hero2, distance);
         Timer timer = new Timer();
